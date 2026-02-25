@@ -1,0 +1,13 @@
+data_root: ./data/interx
+motion_dir: ./data/interx/processed/motions
+text_dir: ./data/interx/processed/texts_processed
+motion_rep: smpl
+joints_num: 55
+
+max_motion_length: 150
+max_text_len: 35
+unit_length: 4
+
+meta_root: ./data/interx/
+dataset_name: interx
+save_vis: False

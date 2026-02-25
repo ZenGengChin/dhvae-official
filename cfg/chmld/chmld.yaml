@@ -1,0 +1,83 @@
+vae:
+  name: chvae_d256_n4_3_l1_cat_m1
+  max_len: 300
+  d_joint: 66
+  d_input: 262
+  latent_size: 1 # base latent size of the vae
+  latent_dim: 256
+  dim_feedforward: 1024
+  dropout: 0.1
+  nlayer_ind: 4
+  nlayer_top: 3
+  nhead: 4
+  contact: linear
+
+  # ablation
+  is_learn_pe: True # default use lpe
+  is_decode_cat: False # default use u3
+  is_skip: False # default not use skip connection
+
+  # hyperparams
+  beta_kl: 0.0001
+  beta_contrast: 0.0001
+  margin: 3.0
+  pos_translation: 0.05
+  uncontact_translation: 0.3
+
+
+  train:
+    lr: 1e-4
+    batch_size: 32
+    epochs: 1000
+
+
+mld:
+  name: chmld_l1
+  latent_size: 1
+  latent_dim: 256
+  nhead: 4
+  nlayer: 9
+  nlayer_self: 2
+  nlayer_cross: 5
+  dim_feedforward: 1024
+  dropout: 0.1
+
+  z3_scale: 5.0
+
+  text_encoder:
+    transformers_clip_version: ./deps/clip-vit-large-patch14
+    clip_version: ViT-L/14@336px
+    d_cond: 768
+    is_intergen_clip: intergen # [intergen, easy, transformers]
+
+  arch: adaln # [adaln, parallel]
+  is_skip: False # [True, False]
+  is_ar: False 
+  is_lpe: False # learnable positional encoding
+  is_l1: False # l1 loss
+  is_vp: False # v-prediction
+  is_sample: False # prediction
+  is_dpm: False
+
+   # diffusion settings
+  guidance_scale: 7.5
+  guidance_uncondp: 0.1
+
+  train:
+    batch_size: 64
+    epochs: 3000
+    lr: 1e-4
+    check_val_every_n_epoch: 10
+
+NoiseScheduler:
+  num_train_timesteps: 1000
+  num_inference_timesteps: 50
+  beta_start: 0.00085
+  beta_end: 0.012
+  beta_schedule: scaled_linear
+  clip_sample: False
+  set_alpha_to_one: False
+  steps_offset: 1
+  eta: 0.0
+  prediction_type: v_prediction
+  algorithm_type: dpmsolver++

@@ -1,0 +1,38 @@
+interhuman:
+    NAME: interhuman
+    DATA_ROOT: ./data/interhuman
+    MOTION_REP: global
+    MODE: train
+    CACHE: True
+    EXTENDED: False
+    WINDOW_SIZE: 64
+    WINDOW_STRIDE: 10
+
+interhuman_val:
+    NAME: interhuman
+    DATA_ROOT: ./data/interhuman
+    MOTION_REP: global
+    MODE: val
+    CACHE: True
+    EXTENDED: False
+    WINDOW_SIZE: 64
+    WINDOW_STRIDE: 10
+
+interhuman_test:
+    NAME: interhuman
+    DATA_ROOT: ./data/interhuman
+    MOTION_REP: global
+    MODE: test
+    CACHE: True
+    EXTENDED: False
+    WINDOW_SIZE: 64
+    WINDOW_STRIDE: 10
+
+humanml3d:
+    NAME: humanml3d
+    DATA_ROOT: ./data/HumanML3D/
+    MOTION_REP: global
+    MODE: train
+    CACHE: True
+    WINDOW_SIZE: 64
+    WINDOW_STRIDE: 10
