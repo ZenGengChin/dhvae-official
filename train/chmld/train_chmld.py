@@ -25,8 +25,8 @@ def main():
     if iargs:
         cfg = OmegaConf.merge(cfg,  OmegaConf.from_dotlist(iargs))
 
-    train_dataset = InterHuman(opt=data_cfg.interhuman, normalize=cfg.mld.get('do_norm', False))
-    test_dataset = InterHuman(opt=data_cfg.interhuman_test, normalize=cfg.mld.get('do_norm', False))
+    train_dataset = InterHuman(opt=data_cfg.interhuman, normalize=cfg.mld.get('do_norm', True))
+    test_dataset = InterHuman(opt=data_cfg.interhuman_test, normalize=cfg.mld.get('do_norm', True))
 
     print(len(train_dataset), len(test_dataset))
     train_dataloader = DataLoader(

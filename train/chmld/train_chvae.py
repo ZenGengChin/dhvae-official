@@ -38,10 +38,10 @@ def main():
     else:
         model = CHVAE(cfg=cfg)
 
-    train_dataset = InterHumanContrastive(opt=data_cfg.interhuman, normalize=cfg.vae.get('do_norm', False),  
+    train_dataset = InterHumanContrastive(opt=data_cfg.interhuman, normalize=cfg.vae.get('do_norm', True),  
                                           pos_translation=cfg.vae.pos_translation, 
                                           uncontact_translation=cfg.vae.uncontact_translation)
-    test_dataset = InterHumanContrastive(opt=data_cfg.interhuman_test, normalize=cfg.vae.get('do_norm', False),
+    test_dataset = InterHumanContrastive(opt=data_cfg.interhuman_test, normalize=cfg.vae.get('do_norm', True),
                                           pos_translation=cfg.vae.pos_translation, 
                                           uncontact_translation=cfg.vae.uncontact_translation)
 

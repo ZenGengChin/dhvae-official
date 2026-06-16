@@ -18,11 +18,11 @@ if iargs:
         is_best = cfg.mld.is_best
         
 exp_name = cfg.mld.name
-if os.path.exists('ckpt/' + exp_name + '/last.ckpt'):
+if os.path.exists('ckpt/' + exp_name + '/' + ckpt_file):
     version_id = os.listdir('ckpt/' + exp_name + '/lightning_logs/')[0]
     cfg = OmegaConf.load(f'ckpt/{exp_name}/lightning_logs/{version_id}/hparams.yaml')
     model = CHMLD.load_from_checkpoint(
-        'ckpt/' + exp_name + '/' + is_best,
+        'ckpt/' + exp_name + '/' + ckpt_file,
         cfg=cfg
     )
 model.eval()
